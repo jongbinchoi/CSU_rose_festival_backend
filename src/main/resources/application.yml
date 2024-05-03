@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: vin
+  h2:
+    console:
+      enabled: true
+  jpa:
+    open-in-view: true
+    generate-ddl : true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+#      ddl-auto: validate #DB??? ?? JPA???? ??? ????? ??
+    properties:
+      hibernate:
+        format_sql: true #?? ??
+        show_sql: true
+
