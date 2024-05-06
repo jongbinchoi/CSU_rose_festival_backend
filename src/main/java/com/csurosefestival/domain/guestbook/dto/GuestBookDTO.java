@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 public class GuestBookDTO {
     private Long guestBookId;
     private String content;
-    private Integer pw;
+    private String nickName;
+//    private Integer pw;
     private Integer reportedCount;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") //JSON 처리 시 포맷팅 지정
     private LocalDateTime createDate;
