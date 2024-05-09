@@ -30,8 +30,8 @@ public class GuestBook {
     @Column(name="LocalDateTime")
     private LocalDateTime createDate;
 
-//    @Column(nullable = false)
-//    private Integer pw = 1234; //기본값 비밀번호 1234설정
+    @Column(nullable = false)
+    private String pw = "1234"; //기본값 비밀번호 1234설정
 
     @Column(name = "reportedCount",nullable = false)
     private Integer reportedCount = 0; //기본값 설정

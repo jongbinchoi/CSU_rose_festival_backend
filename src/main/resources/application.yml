@@ -1,4 +1,9 @@
 spring:
+  profiles:
+    include: secrets # application-secrets.yml 파일을 포함하기 위한 부분
+  sql:
+    init:
+      mode: always
   datasource:
     url: jdbc:h2:mem:testdb
     username: vin
@@ -10,10 +15,11 @@ spring:
     generate-ddl : true
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 #      ddl-auto: validate #DB??? ?? JPA???? ??? ????? ??
     properties:
       hibernate:
         format_sql: true #?? ??
         show_sql: true
+    defer-datasource-initialization: true
 
