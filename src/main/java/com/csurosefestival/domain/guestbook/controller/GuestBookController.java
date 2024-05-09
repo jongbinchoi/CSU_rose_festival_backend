@@ -28,7 +28,10 @@ public class GuestBookController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<GuestBookDTO> createGuestBook(@RequestBody GuestBookRequest request) {
+    public ResponseEntity<GuestBookDTO> createGuestBook(@RequestBody GuestBookRequest request, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body((GuestBookDTO) bindingResult.getAllErrors());
+        }
         GuestBookDTO savedGuestBook = guestBookService.saveGuestBook(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedGuestBook);
     }

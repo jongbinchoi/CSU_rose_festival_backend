@@ -21,7 +21,7 @@ public class GuestBookService {
 
     private final GuestBookRepository guestBookRepository;
 
-    public  List<GuestBookDTO> findAll() {
+    public List<GuestBookDTO> findAll() {
         return guestBookRepository.findAll().stream()
                 .map(GuestBookMapper::toDTO)
                 .collect(Collectors.toList());
@@ -29,15 +29,18 @@ public class GuestBookService {
 
     @Transactional
     public GuestBookDTO saveGuestBook(GuestBookRequest request) {
-        //Request DTO를 엔티티로 변환
-        GuestBook guestBook = GuestBookMapper.toEntity(request);
+        try {
+            // Request DTO를 엔티티로 변환
+            GuestBook guestBook = GuestBookMapper.toEntity(request);
 
-        // 엔티티를 데이터베이스에 저장
-        GuestBook savedGuestBook = guestBookRepository.save(guestBook);
+            // 엔티티를 데이터베이스에 저장
+            GuestBook savedGuestBook = guestBookRepository.save(guestBook);
 
-        // 저장된 게시물 엔티티를 DTO로 변환하여 반환
-        return GuestBookMapper.toDTO(savedGuestBook);
+            // 저장된 게시물 엔티티를 DTO로 변환하여 반환
+            return GuestBookMapper.toDTO(savedGuestBook);
+        } catch (Exception e) {
+            log.error("방명록 등록 에러 발생", e);
+            throw new RuntimeException("방명록 등록 실패", e);
+        }
     }
-
-
 }
