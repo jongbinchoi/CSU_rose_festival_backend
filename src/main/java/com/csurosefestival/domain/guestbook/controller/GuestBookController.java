@@ -27,7 +27,7 @@ public class GuestBookController {
         return ResponseEntity.ok(guestBooks);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/")
     public ResponseEntity<GuestBookDTO> createGuestBook(@RequestBody GuestBookRequest request) {
         GuestBookDTO savedGuestBook = guestBookService.saveGuestBook(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedGuestBook);
