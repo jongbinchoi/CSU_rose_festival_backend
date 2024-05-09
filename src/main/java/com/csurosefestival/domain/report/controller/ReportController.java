@@ -32,7 +32,7 @@ public class ReportController {
         return ResponseEntity.ok().body(deleted);
     }
 
-    @GetMapping("/ai/guestbook/report")
+    @GetMapping("/api/guestbook/report")
     public ResponseEntity<List<GuestBook>> findTop10ReportedGuestbook(){
         return ResponseEntity.ok().body(reportService.findTop10ReportedGuestbook());
     }
