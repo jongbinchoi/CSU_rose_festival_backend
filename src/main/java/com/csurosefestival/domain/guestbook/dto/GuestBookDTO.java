@@ -1,10 +1,8 @@
 package com.csurosefestival.domain.guestbook.dto;
 
+import com.csurosefestival.domain.guestbook.entity.GuestBook;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @Builder
+@Getter
 public class GuestBookDTO {
     private Long guestBookId;
     private String content;
