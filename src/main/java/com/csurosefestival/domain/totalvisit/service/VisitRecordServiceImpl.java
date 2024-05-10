@@ -30,8 +30,6 @@ public class VisitRecordServiceImpl implements VisitRecordService{
         visitRecodeRepository.save(visitRecord);
     }
 
-
-
     @Override
     public List<VisitRecordDTO> visitList() {
         List<VisitRecordDTO> dtoList = visitRecodeRepository.countByVisitDate();
@@ -44,41 +42,6 @@ public class VisitRecordServiceImpl implements VisitRecordService{
         return visitRecodeRepository.countByVisitDate(today);
     }
 
-    public void printDailyVisitStatistics() {
-        Long dailyVisitStatistics = this.getDailyVisitStatistics();
-        System.out.println("Daily Visit Statistics: " + dailyVisitStatistics);
-    }
 
-//    @Override
-//    public void visit(VisitRecord visitRecord){
-//        visitRecodeRepository.save(visitRecord);
-//    }
-//
-//    @Override
-//    public void visit(LocalDateTime visitDateTime) {
-//        VisitRecord visitRecord = new VisitRecord();
-//        visitRecord.setVisitDate(visitDateTime);
-//        visitRecord.increaseVisitCount();
-//        visitRecodeRepository.save(visitRecord);
-//    }
-//
-//    @Override
-//    public List<VisitRecordDTO> visitList() {
-//        List<VisitRecord> visitRecords = visitRecodeRepository.findAll();
-//        visitRecords.forEach(VisitRecord::getDayOfWeek);
-//
-//        return visitRecords.stream()
-//            .collect(Collectors.groupingBy(VisitRecord::getDayOfWeek))
-//            .entrySet().stream()
-//            .map(entry -> new VisitRecordDTO(entry.getValue().get(0).getVisitDate(),calculateTotalVisits(entry.getValue()), entry.getKey()))
-//            .collect(Collectors.toList());
-//
-//    }
-//
-//    private Long calculateTotalVisits(List<VisitRecord> visitRecords) {
-//        return visitRecords.stream()
-//                .mapToLong(VisitRecord::getVisitCount)
-//                .sum();
-//    }
 
 }

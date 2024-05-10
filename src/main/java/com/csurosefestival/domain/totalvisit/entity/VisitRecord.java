@@ -24,10 +24,6 @@ public class VisitRecord {
     @Column(name = "visitId")
     private Long visitId;
 
-//    @Column(name = "daliyVisits",nullable = false)
-//    private Long daliyVisits;
-//
-
     @CreatedDate
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "visitDateDetail")
