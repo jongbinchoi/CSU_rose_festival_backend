@@ -27,8 +27,13 @@ public class GuestBook {
     @Column(name="nickName", nullable = false, length = 50)
     private String nickName;
 
+
+    @Column(nullable = false)
+    private String pw = "1234"; //기본값 비밀번호 1234설정
+  
     @Column(name="localDateTime") // 변경: 로컬 날짜 시간
     private LocalDateTime createDate = LocalDateTime.now();
+
 
     @Column(name = "reportedCount",nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 날짜 및 시간 형식 지정
