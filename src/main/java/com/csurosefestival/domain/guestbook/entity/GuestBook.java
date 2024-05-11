@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -15,10 +14,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "GuestBook")
+@Table(name = "guestBook") // 여기에 이름 명시
 public class GuestBook {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//DB가 id(pk) 자동 생성
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // DB가 id(pk) 자동 생성
     private Long guestBookId;
 
     @Column(name="content", nullable = false, length = 255)
@@ -27,18 +27,15 @@ public class GuestBook {
     @Column(name="nickName", nullable = false, length = 50)
     private String nickName;
 
-    @Column(name="LocalDateTime")
-    private LocalDateTime createDate;
 
     @Column(nullable = false)
     private String pw = "1234"; //기본값 비밀번호 1234설정
+  
+    @Column(name="localDateTime") // 변경: 로컬 날짜 시간
+    private LocalDateTime createDate = LocalDateTime.now();
+
 
     @Column(name = "reportedCount",nullable = false)
-    private Integer reportedCount = 0; //기본값 설정
-
-    //처음 생성될 때 자동으로 현재 날짜를 설정
-    @PrePersist
-    protected void onCreate() {
-        this.createDate = LocalDateTime.now();
-    }
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 날짜 및 시간 형식 지정
+    private Integer reportedCount = 0; // 기본값 설정
 }

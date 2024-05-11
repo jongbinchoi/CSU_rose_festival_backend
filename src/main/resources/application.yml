@@ -12,14 +12,13 @@ spring:
       enabled: true
   jpa:
     open-in-view: true
-    generate-ddl : true
+    generate-ddl: true
     show-sql: true
     hibernate:
-      ddl-auto: create
-#      ddl-auto: validate #DB??? ?? JPA???? ??? ????? ??
+      ddl-auto: update
+
     properties:
       hibernate:
-        format_sql: true #?? ??
+        format_sql: true
         show_sql: true
-    defer-datasource-initialization: true
-
+    #defer-datasource-initialization: true 

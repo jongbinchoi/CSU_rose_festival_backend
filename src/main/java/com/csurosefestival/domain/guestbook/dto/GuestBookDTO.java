@@ -1,10 +1,8 @@
 package com.csurosefestival.domain.guestbook.dto;
 
+import com.csurosefestival.domain.guestbook.entity.GuestBook;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +10,11 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @Builder
+@Getter
 public class GuestBookDTO {
     private Long guestBookId;
     private String content;
     private String nickName;
-//    private Integer pw;
     private Integer reportedCount;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") //JSON 처리 시 포맷팅 지정
     private LocalDateTime createDate;
