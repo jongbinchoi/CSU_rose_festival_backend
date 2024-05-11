@@ -30,7 +30,7 @@ public class ReportService {
         GuestBook target = guestBookRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID를 찾을 수 없습니다"));
 
         String pwd = target.getPw();
-        if(dto.getPassword().equals(PASSWORD) || pwd.equals(dto.getPassword())){
+        if(dto.getPw().equals(PASSWORD) || pwd.equals(dto.getPw())){
             guestBookRepository.delete(target);
         }
         return target;
