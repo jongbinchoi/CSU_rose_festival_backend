@@ -16,6 +16,7 @@ public class GuestBookDTO {
     private String content;
     private String nickName;
     private Integer reportedCount;
+    private String pw;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss") //JSON 처리 시 포맷팅 지정
     private LocalDateTime createDate;
 }

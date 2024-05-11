@@ -1,4 +1,3 @@
-INSERT INTO guest_book(guest_book_id, content, nick_name, pw, reported_count) VALUES (0, '1번째 글', 'first', '12345', 99);
 INSERT INTO guest_book(guest_book_id, content, nick_name, pw, reported_count) VALUES (1, '2번째 글', 'few', '12345', 0);
 INSERT INTO guest_book(guest_book_id, content, nick_name, pw, reported_count) VALUES (2, '3번째 글', 'fewfew', '12345', 1);
 INSERT INTO guest_book(guest_book_id, content, nick_name, pw, reported_count) VALUES (3, '4번째 글', 'fewzd', '12345', 3);

@@ -11,5 +11,7 @@ import lombok.NoArgsConstructor;
 public class GuestBookRequest {
     private String content;
     private String nickName;
+    private String pw;
+
 
 }

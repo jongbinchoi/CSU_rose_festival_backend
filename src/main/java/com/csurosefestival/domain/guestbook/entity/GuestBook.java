@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -27,15 +29,24 @@ public class GuestBook {
     @Column(name="nickName", nullable = false, length = 50)
     private String nickName;
 
+    @Column
+    private String pw; //기본값 비밀번호 1234설정
 
-    @Column(nullable = false)
-    private String pw = "1234"; //기본값 비밀번호 1234설정
-  
     @Column(name="localDateTime") // 변경: 로컬 날짜 시간
-    private LocalDateTime createDate = LocalDateTime.now();
-
+    @CreatedDate
+    private LocalDateTime createDate;
 
     @Column(name = "reportedCount",nullable = false)
+    @Builder.Default
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") // 날짜 및 시간 형식 지정
     private Integer reportedCount = 0; // 기본값 설정
+
+    @PrePersist
+    protected void onCreate() {
+        this.createDate = LocalDateTime.now();
+        if (this.pw == null) {
+            this.pw = "1234";
+        }
+    }
+
 }
