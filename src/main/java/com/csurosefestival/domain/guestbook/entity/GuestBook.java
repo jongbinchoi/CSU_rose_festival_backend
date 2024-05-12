@@ -43,7 +43,9 @@ public class GuestBook {
 
     @PrePersist
     protected void onCreate() {
-        this.createDate = LocalDateTime.now();
+        if (this.createDate == null) {
+            this.createDate = LocalDateTime.now();
+        }
         if (this.pw == null) {
             this.pw = "1234";
         }

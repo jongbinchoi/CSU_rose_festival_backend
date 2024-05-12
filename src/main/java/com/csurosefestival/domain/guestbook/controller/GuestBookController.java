@@ -22,19 +22,29 @@ public class GuestBookController {
 
     private final GuestBookService guestBookService;
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<List<GuestBookDTO>> getAllGuestBooks() {
-        List<GuestBookDTO> guestBooks = guestBookService.findAll();
+        List<GuestBookDTO> allGuestBook = guestBookService.findAll();
+        return ResponseEntity.ok(allGuestBook);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<GuestBookDTO>> getGuestBooks() {
+        List<GuestBookDTO> guestBooks = guestBookService.findFifty();
         return ResponseEntity.ok(guestBooks);
     }
 
     @PostMapping("/")
-    public ResponseEntity<GuestBookDTO> savedGuestBook(@Valid @RequestBody GuestBookRequest request, BindingResult bindingResult) {
+    public ResponseEntity<?> savedGuestBook(@Valid @RequestBody GuestBookRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body((GuestBookDTO) bindingResult.getAllErrors());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bindingResult.getAllErrors());
         }
-        GuestBookDTO savedGuestBook = guestBookService.saveGuestBook(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedGuestBook);
+        try {
+            GuestBookDTO savedGuestBook = guestBookService.saveGuestBook(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedGuestBook);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("방명록 저장 중 오류 발생");
+        }
     }
 
     @PostMapping("/report")

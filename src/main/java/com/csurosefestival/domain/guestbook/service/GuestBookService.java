@@ -23,7 +23,13 @@ public class GuestBookService {
     private final GuestBookRepository guestBookRepository;
 
     public List<GuestBookDTO> findAll() {
-        return guestBookRepository.findTop50ByOrderByCreateDate().stream()
+        return guestBookRepository.findAll().stream()
+                .map(GuestBookMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<GuestBookDTO> findFifty() {
+        return guestBookRepository.findTop50ByOrderByCreateDateDesc().stream()
                 .map(GuestBookMapper::toDTO)
                 .collect(Collectors.toList());
     }
@@ -57,4 +63,6 @@ public class GuestBookService {
 
         return GuestBookMapper.toDTO(updatedReport);
     }
+
+
 }
