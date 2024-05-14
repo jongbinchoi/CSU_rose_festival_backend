@@ -21,18 +21,19 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/api/guestbook")
 public class ReportController {
 
     private final ReportService reportService;
 
-    @DeleteMapping("/api/guestbook/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<GuestBook> deleteGuestBook(@PathVariable Long id, @RequestBody @Valid DeleteGuestBookDto dto){
         GuestBook deleted = reportService.deleteGuestBook(id, dto);
 
         return ResponseEntity.ok().body(deleted);
     }
 
-    @GetMapping("/api/guestbook/report")
+    @GetMapping("/report")
     public ResponseEntity<List<GuestBook>> findTop10ReportedGuestbook(){
         return ResponseEntity.ok().body(reportService.findTop10ReportedGuestbook());
     }
